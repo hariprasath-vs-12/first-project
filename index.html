@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EC2 Test Page</title>
+<style>
+  :root {
+    --deep: #031d44;
+    --mid: #0a4fa8;
+    --bright: #1e90ff;
+    --sky: #7fd3ff;
+    --foam: #e8f6ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    color: var(--foam);
+    background: linear-gradient(160deg, var(--deep), var(--mid) 60%, var(--bright));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .bubble {
+    position: absolute;
+    bottom: -80px;
+    border-radius: 50%;
+    background: rgba(127, 211, 255, 0.25);
+    border: 2px solid rgba(232, 246, 255, 0.35);
+    animation: rise linear infinite;
+  }
+  .bubble:nth-child(1) { left: 8%;  width: 40px; height: 40px; animation-duration: 11s; }
+  .bubble:nth-child(2) { left: 22%; width: 70px; height: 70px; animation-duration: 15s; animation-delay: 2s; }
+  .bubble:nth-child(3) { left: 45%; width: 30px; height: 30px; animation-duration: 9s;  animation-delay: 1s; }
+  .bubble:nth-child(4) { left: 65%; width: 90px; height: 90px; animation-duration: 18s; animation-delay: 3s; }
+  .bubble:nth-child(5) { left: 82%; width: 50px; height: 50px; animation-duration: 12s; animation-delay: 0s; }
+  .bubble:nth-child(6) { left: 92%; width: 25px; height: 25px; animation-duration: 10s; animation-delay: 4s; }
+  @keyframes rise {
+    to { transform: translateY(-120vh); }
+  }
+  main {
+    position: relative;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    max-width: 90%;
+    background: rgba(3, 29, 68, 0.55);
+    border: 2px solid var(--sky);
+    border-radius: 28px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 40px rgba(30, 144, 255, 0.6);
+  }
+  .wave { font-size: 4rem; display: inline-block; animation: wave 1.6s ease-in-out infinite; transform-origin: 70% 70%; }
+  @keyframes wave {
+    0%, 60%, 100% { transform: rotate(0); }
+    10%, 30% { transform: rotate(16deg); }
+    20%, 40% { transform: rotate(-10deg); }
+    50% { transform: rotate(8deg); }
+  }
+  h1 { font-size: clamp(1.8rem, 5vw, 3rem); margin: 1rem 0 0.5rem; color: #fff; }
+  p { font-size: clamp(1rem, 2.5vw, 1.3rem); color: var(--sky); }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 999px;
+    background: var(--bright);
+    color: #fff;
+    font-weight: bold;
+  }
+  .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #7dffb2;
+    animation: pulse 1.4s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(125, 255, 178, 0.8); }
+    100% { box-shadow: 0 0 0 14px rgba(125, 255, 178, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bubble, .wave, .dot { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+
+  <main>
+    <div class="wave">👋</div>
+    <h1>Hi, this site is working fine from EC2!</h1>
+    <p>Test page: if you can read this, your server is serving traffic.</p>
+    <div class="status"><span class="dot"></span> Server is up</div>
+  </main>
+</body>
+</html>
